@@ -1,0 +1,24 @@
+From: Shengjing Zhu <zhsj@debian.org>
+Date: Thu, 9 Feb 2023 01:35:56 +0800
+Subject: Skip TestSignerWithBrokenRand
+
+Due to https://github.com/golang/go/commit/8a81fdf1 on Go1.20
+Go's crypto lib ignores the rand source, so it won't fail.
+
+Bug: https://github.com/go-jose/go-jose/issues/27
+---
+ signing_test.go | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/signing_test.go b/signing_test.go
+index 89b2ed7..1329d53 100644
+--- a/signing_test.go
++++ b/signing_test.go
+@@ -151,6 +151,7 @@ func TestRoundtripsJWSCorruptSignature(t *testing.T) {
+ }
+ 
+ func TestSignerWithBrokenRand(t *testing.T) {
++	t.Skip("Broken on Go1.20")
+ 	sigAlgs := []SignatureAlgorithm{RS256, RS384, RS512, PS256, PS384, PS512}
+ 
+ 	serializer := func(obj *JSONWebSignature) (string, error) { return obj.CompactSerialize() }

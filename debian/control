@@ -1,15 +1,30 @@
-Source: template-repository
-Section: unknown
+Source: golang-gopkg-square-go-jose.v2
+Section: golang
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Uploaders: Michael Stapelberg <stapelberg@debian.org>,
+           Dmitry Smirnov <onlyjob@debian.org>,
+Build-Depends: debhelper-compat (= 13),
+               dh-golang,
+               golang-any,
+               golang-github-google-go-cmp-dev,
+               golang-github-stretchr-testify-dev,
+               golang-golang-x-crypto-dev,
+Standards-Version: 4.6.2
+Homepage: https://github.com/square/go-jose
+Vcs-Browser: https://salsa.debian.org/go-team/packages/golang-gopkg-square-go-jose.v2
+Vcs-Git: https://salsa.debian.org/go-team/packages/golang-gopkg-square-go-jose.v2.git
+XS-Go-Import-Path: gopkg.in/square/go-jose.v2
+Rules-Requires-Root: no
+Testsuite: autopkgtest-pkg-go
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: golang-gopkg-square-go-jose.v2-dev
+Architecture: all
+Depends: golang-golang-x-crypto-dev,
+         ${misc:Depends},
+         ${shlibs:Depends},
+Multi-Arch: foreign
+Description: implementation of JOSE standards (JWE, JWS, JWT) in Go
+ Package jose aims to provide an implementation of the Javascript Object
+ Signing and Encryption set of standards. This includes support for JSON
+ Web Encryption, JSON Web Signature, and JSON Web Token standards.
